@@ -4,23 +4,21 @@ from datetime import timedelta
 
 
 def get_duration(visit):
-    entered_at_moscow = timezone.localtime(visit.entered_at).replace(microsecond=0)
-    now_moscow = timezone.localtime().replace(microsecond=0)
-    leaved_at_moscow = timezone.localtime(visit.leaved_at).replace(microsecond=0)
-    if visit.leaved_at:
-        leaved_at_moscow = timezone.localtime(visit.leaved_at).replace(microsecond=0)
-    else:
-        leaved_at_moscow = timezone.localtime().replace(microsecond=0)
-    duration = leaved_at_moscow - entered_at_moscow
-    return duration
+    entered_at_moscow = timezone.localtime(
+        visit.entered_at).replace(microsecond=0)
+
+    leaved_at_moscow = timezone.localtime(
+        visit.leaved_at if visit.leaved_at else timezone.now()
+    ).replace(microsecond=0)
+
+    return leaved_at_moscow - entered_at_moscow
 
 
 def format_duration(duration):
     total_seconds = int(duration.total_seconds())
     hours, remainder = divmod(total_seconds, 3600)
     minutes, seconds = divmod(remainder, 60)
-    formatted_time = f'{hours}ч {minutes:02d}мин'
-    return formatted_time
+    return f'{hours}ч {minutes:02d}мин'
 
 
 def is_visit_long(visit, minutes=60):

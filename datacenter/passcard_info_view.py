@@ -4,7 +4,6 @@ from datacenter.models import Visit, Passcard, get_duration, is_visit_long
 
 
 def passcard_info_view(request, passcode):
-    # Программируем здесь
     passcard = get_object_or_404(Passcard, passcode=passcode)
     visits = Visit.objects.filter(passcard=passcard)
 

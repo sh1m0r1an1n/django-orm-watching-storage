@@ -9,16 +9,17 @@
 1. **Настройка окружения:**
    - В корневой директории проекта, в папке `project` создайте файл `.env` и добавьте в него строки:
      ```
-     ENGINE=
-     HOST=
-     PORT=
-     NAME=
-     USER=
-     PASSWORD=
+     DB_ENGINE=
+     DB_HOST=
+     DB_PORT=
+     DB_NAME=
+     DB_USER=
+     DB_PASSWORD=
      SECRET_KEY=
-     DEBUG=
+     DEBUG=False
+     ALLOWED_HOSTS=localhost
      ```
-   - Заполните данные после `=`
+   - Заполните данные после `=`. Для базы данных префикс `DB_`. Для `ALLOWED_HOSTS` можно дополнить список.
 
 2. **Установка зависимостей:**
    - Убедитесь, что у вас установлен Python 3.
